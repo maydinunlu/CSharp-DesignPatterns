@@ -4,6 +4,7 @@
   * [Memento](#Memento) 
   * [State](#State) 
   * [Iterator](#Iterator) 
+  * [Strategy](#Strategy) 
 
 ## Memento
 
@@ -266,4 +267,78 @@ Browse History
 Url: https://www.google.com
 Url: https://www.bing.com
 Url: https://www.yandex.com
+```
+
+***
+
+## Strategy
+
+![](DesignPatterns/StrategyPattern/Assets/Strategy.png)
+
+C# Code
+
+```c#
+public interface IDataProvider
+{
+    void Save(string data);
+}
+
+public class JsonDataProvider : IDataProvider
+{
+    public void Save(string data)
+    {
+        Console.WriteLine("SaveData: JSON");
+    }
+}
+
+public class XmlDataProvider : IDataProvider
+{
+    public void Save(string data)
+    {
+        Console.WriteLine("SaveData: XML");
+    }
+}
+
+public class DataStorage
+{
+    private IDataProvider _dataProvider;
+
+    public DataStorage(IDataProvider dataProvider)
+    {
+        _dataProvider = dataProvider;
+    }
+
+    public void Save(string data)
+    {
+        _dataProvider.Save(data);
+    }
+
+    public void Save(string data, IDataProvider provider)
+    {
+        provider.Save(data);
+    }
+}
+
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("With Constructor Injection");
+        DataStorage storage = new DataStorage(new XmlDataProvider());
+        storage.Save("data");
+
+        Console.WriteLine("With Method Injection");
+        storage.Save("data", new JsonDataProvider());
+    }
+}
+```
+
+Console Output
+
+```console
+With Constructor Injection
+SaveData: XML
+With Method Injection
+SaveData: JSON
 ```
