@@ -2,10 +2,11 @@
 
 * Patterns
   * [Memento](#Memento) 
+  * [State](#State) 
 
 ## Memento
 
-![](DesignPatterns/Memento/Assets/Memento.png)
+![](DesignPatterns/MementoPattern/Assets/Memento.png)
 
 C# Code
 
@@ -86,6 +87,7 @@ class Program
         Console.WriteLine("Current: " + editor.Content);
     }
 }
+
 ```
 
 Console Output
@@ -95,4 +97,73 @@ Current: Content-1
 Current: Content-2
 ------------------
 Current: Content-1
+```
+
+***
+
+## State
+
+![](DesignPatterns/StatePattern/Assets/State.png)
+
+C# Code
+
+```c#
+
+public interface IControl
+{
+    void Render();
+}
+ 
+public class TextControl : IControl
+{
+    public void Render()
+    {
+        Console.WriteLine("Render: Text");
+    }
+}
+
+public class ButtonControl : IControl
+{
+    public void Render()
+    {
+        Console.WriteLine("Render: Button");
+    }
+}
+
+public class Canvas
+{
+    private IControl _currentControl;
+    public IControl CurrentControl
+    {
+        get => _currentControl;
+        set => _currentControl = value;
+    }
+
+    public void Render()
+    {
+        _currentControl.Render();
+    }
+}
+
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Canvas canvas = new Canvas();
+
+        canvas.CurrentControl = new ButtonControl();
+        canvas.Render();
+
+        canvas.CurrentControl = new TextControl();
+        canvas.Render();
+    }
+}
+```
+
+Console Output
+
+```console
+Render: Button
+Render: Text
 ```
