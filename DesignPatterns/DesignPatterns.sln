@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MementoPattern", "MementoPa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatePattern", "StatePattern\StatePattern.csproj", "{AE64ADCC-F32D-4809-90C7-EC32BEC1D7E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IteratorPattern", "IteratorPattern\IteratorPattern.csproj", "{4D3CEB29-89D6-4EAE-9BE8-4C7EE368F8CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{AE64ADCC-F32D-4809-90C7-EC32BEC1D7E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE64ADCC-F32D-4809-90C7-EC32BEC1D7E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE64ADCC-F32D-4809-90C7-EC32BEC1D7E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D3CEB29-89D6-4EAE-9BE8-4C7EE368F8CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D3CEB29-89D6-4EAE-9BE8-4C7EE368F8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D3CEB29-89D6-4EAE-9BE8-4C7EE368F8CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D3CEB29-89D6-4EAE-9BE8-4C7EE368F8CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
