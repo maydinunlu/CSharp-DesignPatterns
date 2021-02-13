@@ -3,6 +3,7 @@
 * Patterns
   * [Memento](#Memento) 
   * [State](#State) 
+  * [Iterator](#Iterator) 
 
 ## Memento
 
@@ -166,4 +167,103 @@ Console Output
 ```console
 Render: Button
 Render: Text
+```
+
+***
+
+## Iterator
+
+![](DesignPatterns/IteratorPattern/Assets/Iterator.png)
+
+C# Code
+
+```c#
+
+public interface IIterator
+{
+    string Current // Can be generic
+    {
+        get;
+    }
+    bool HasNext();
+    void Next();
+}
+
+public class BrowseHistory
+{
+    private readonly List<string> _urlList = new();
+
+    public void Push(string url)
+    {
+        _urlList.Add(url);
+    }
+
+    public string Pop()
+    {
+        var index = _urlList.Count - 1;
+
+        var url = _urlList[index];
+        _urlList.RemoveAt(index);
+
+        return url;
+    }
+
+    public IIterator CreateIterator()
+    {
+        return new ListIterator(this);
+    }
+
+    private class ListIterator : IIterator
+    {
+        private readonly BrowseHistory _browseHistory;
+        private int _index;
+
+        public string Current => _browseHistory._urlList[_index];
+
+        public ListIterator(BrowseHistory browseHistory)
+        {
+            _browseHistory = browseHistory;
+        }
+
+        public bool HasNext()
+        {
+            return _index < _browseHistory._urlList.Count;
+        }
+
+        public void Next()
+        {
+            _index++;
+        }
+    }
+}
+
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var browseHistory = new BrowseHistory();
+        browseHistory.Push("https://www.google.com");
+        browseHistory.Push("https://www.bing.com");
+        browseHistory.Push("https://www.yandex.com");
+
+        Console.WriteLine("Browse History");
+        IIterator iterator = browseHistory.CreateIterator();
+        while (iterator.HasNext())
+        {
+            var url = iterator.Current;
+            Console.WriteLine($"Url: {url}");
+            iterator.Next();
+        }
+    }
+}
+```
+
+Console Output
+
+```console
+Browse History
+Url: https://www.google.com
+Url: https://www.bing.com
+Url: https://www.yandex.com
 ```
