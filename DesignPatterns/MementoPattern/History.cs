@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Memento
+namespace MementoPattern
 {
     public class History
     {
