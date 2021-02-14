@@ -4,7 +4,8 @@
   * [Memento](#Memento) 
   * [State](#State) 
   * [Iterator](#Iterator) 
-  * [Strategy](#Strategy) 
+  * [Strategy](#Strategy)
+  * [TemplateMethod](#TemplateMethod)
 
 ## Memento
 
@@ -341,4 +342,77 @@ With Constructor Injection
 SaveData: XML
 With Method Injection
 SaveData: JSON
+```
+
+***
+
+## TemplateMethod
+
+![](DesignPatterns/TemplateMethodPattern/Assets/TemplateMethod.png)
+
+C# Code
+
+```c#
+
+public abstract class Task
+{
+    public void Execute()
+    {
+        Console.WriteLine("Execute()");
+        Console.WriteLine("- Do: Something General");
+
+        Action1();
+        Action2();
+    }
+
+    protected abstract void Action1();
+    protected abstract void Action2();
+}
+
+public class SendMailTask : Task
+{
+    protected override void Action1()
+    {
+        Console.WriteLine("- Do: Action1");
+    }
+
+    protected override void Action2()
+    {
+        Console.WriteLine("- Do: Action2");
+    }
+}
+
+public class SendMailExecuter
+{
+    private Task _task;
+
+    public SendMailExecuter()
+    {
+        _task = new SendMailTask();
+    }
+
+    public void Execute()
+    {
+        _task.Execute();
+    }
+}
+
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var executer = new SendMailExecuter();
+        executer.Execute();
+    }
+}
+```
+
+Console Output
+
+```console
+Execute()
+- Do: Something General
+- Do: Action1
+- Do: Action2
 ```
