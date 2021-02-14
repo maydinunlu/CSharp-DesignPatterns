@@ -7,6 +7,7 @@
   * [Strategy](#Strategy)
   * [TemplateMethod](#TemplateMethod)
   * [Command](#Command)
+  * [Observer](#Observer)
 
 ## Memento
 
@@ -488,4 +489,84 @@ Console Output
 
 ```console
 Add User
+```
+
+***
+
+## Observer
+
+![](DesignPatterns/ObserverPattern/Assets/Observer.png)
+
+C# Code
+
+```c#
+
+public interface IObserver
+{
+    void Update();
+}
+
+public class UIObject : IObserver
+{
+    public void Update()
+    {
+        Console.WriteLine("UI Updated!");
+    }
+}
+    
+public class Subject
+{
+    private List<IObserver> _observers = new List<IObserver>();
+
+    public void AddObserver(IObserver observer)
+    {
+        _observers.Add(observer);
+    }
+
+    public void RemoveObserver(IObserver observer)
+    {
+        _observers.Remove(observer);
+    }
+
+    public void Update()
+    {
+        _observers.ForEach(x=>x.Update());
+    }
+}
+
+public class DataSource : Subject
+{
+    private int _value;
+    public int Value
+    {
+        get => _value;
+        set
+        {
+            _value = value;
+            Update();
+        }
+    } 
+}
+
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var dataSource = new DataSource();
+        var uiControl1 = new UIObject();
+        var uiControl2 = new UIObject();
+        dataSource.AddObserver(uiControl1);
+        dataSource.AddObserver(uiControl2);
+
+        dataSource.Value = 7;
+    }
+}
+```
+
+Console Output
+
+```console
+UI Updated!
+UI Updated!
 ```
