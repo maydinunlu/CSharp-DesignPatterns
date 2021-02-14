@@ -6,6 +6,7 @@
   * [Iterator](#Iterator) 
   * [Strategy](#Strategy)
   * [TemplateMethod](#TemplateMethod)
+  * [Command](#Command)
 
 ## Memento
 
@@ -415,4 +416,76 @@ Execute()
 - Do: Something General
 - Do: Action1
 - Do: Action2
+```
+
+***
+
+## Command
+
+![](DesignPatterns/CommandPattern/Assets/Command.png)
+
+C# Code
+
+```c#
+
+public interface ICommand
+{
+    void Execute();
+}
+
+public class AddUserCommand : ICommand
+{
+    private UserService _userService;
+
+    public AddUserCommand(UserService userService)
+    {
+        _userService = userService;
+    }
+
+    public void Execute()
+    {
+        _userService.AddUser();
+    }
+}
+
+public class Button
+{
+    private ICommand _command;
+
+    public Button(ICommand command)
+    {
+        _command = command;
+    }
+
+    public void Click()
+    {
+        _command.Execute();
+    }
+}
+
+public class UserService
+{
+    public void AddUser()
+    {
+        Console.WriteLine("Add User");
+    }
+}
+
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        UserService userService = new();
+        ICommand addUserCommand = new AddUserCommand(userService);
+        var button = new Button(addUserCommand);
+        button.Click();
+    }
+}
+```
+
+Console Output
+
+```console
+Add User
 ```
