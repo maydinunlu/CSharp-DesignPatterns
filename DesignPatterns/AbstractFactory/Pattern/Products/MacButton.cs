@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AbstractFactoryPattern
+namespace DesignPatterns.AbstractFactory
 {
     public class MacButton : IButton
     {

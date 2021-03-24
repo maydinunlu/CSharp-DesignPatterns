@@ -1,4 +1,4 @@
-﻿namespace AbstractFactoryPattern
+﻿namespace DesignPatterns.AbstractFactory
 {
     public interface IButton
     {

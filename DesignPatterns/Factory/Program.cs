@@ -1,4 +1,4 @@
-﻿namespace FactoryPattern
+﻿namespace DesignPatterns.Factory
 {
     class Program
     {

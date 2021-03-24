@@ -1,4 +1,4 @@
-﻿namespace AbstractFactoryPattern
+﻿namespace DesignPatterns.AbstractFactory
 {
     public class WinFactory : IGUIFactory
     {

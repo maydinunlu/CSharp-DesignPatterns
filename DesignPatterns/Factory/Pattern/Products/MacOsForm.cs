@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FactoryPattern
+namespace DesignPatterns.Factory
 {
     public class MacOsForm : Form
     {
