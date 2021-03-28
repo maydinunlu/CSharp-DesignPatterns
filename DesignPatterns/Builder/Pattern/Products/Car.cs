@@ -1,4 +1,4 @@
-﻿namespace BuilderPattern
+﻿namespace DesignPatterns.Builder
 {
     public class Car
     {

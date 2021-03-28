@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BuilderPattern
+namespace DesignPatterns.Builder
 {
     public class Manual
     {
